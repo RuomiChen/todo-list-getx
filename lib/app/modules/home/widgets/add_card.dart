@@ -2,8 +2,11 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/app/core/utils/extensions.dart';
+import 'package:flutter_application_1/app/core/values/colors.dart';
+import 'package:flutter_application_1/app/data/models/task.dart';
 import 'package:flutter_application_1/app/modules/home/controller.dart';
 import 'package:flutter_application_1/app/widgets/icons.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
@@ -27,11 +30,12 @@ class AddCard extends StatelessWidget {
             radius: 5,
             title: 'Task Type',
             content: Form(
+              key: homeCtrl.formKey,
               child: Column(
                 children: [
                   Padding(
                     // 左右+上下
-                    padding:  EdgeInsets.symmetric(horizontal: 3.0.wp),
+                    padding: EdgeInsets.symmetric(horizontal: 3.0.wp),
                     child: TextFormField(
                       controller: homeCtrl.editCtrl,
                       decoration: const InputDecoration(
@@ -46,29 +50,67 @@ class AddCard extends StatelessWidget {
                       },
                     ),
                   ),
-                 Padding(padding: EdgeInsets.symmetric(vertical: 5.0.wp),
-                 child:  Wrap(
-                    spacing: 2.0.wp,
-                    children:
-                    icons.map((e)=>Obx((){
-                      final index = icons.indexOf(e);
-                      return ChoiceChip(
-                        selectedColor: Colors.grey[200],
-                        pressElevation: 0,
-                        backgroundColor: Colors.white,
-                        label: e,
-                        showCheckmark: false,//不用打勾标记
-                        selected: homeCtrl.chipIndex.value ==index,
-                        onSelected: (bool selected) {
-                          homeCtrl.chipIndex.value = selected?index:0;
-                        }
-                      );
-                    })).toList(),
-                  )
-               ,) ],
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 5.0.wp),
+                    child: Wrap(
+                      spacing: 2.0.wp,
+                      children: icons
+                          .map(
+                            (e) => Obx(() {
+                              final index = icons.indexOf(e);
+                              return ChoiceChip(
+                                selectedColor: Colors.grey[200],
+                                pressElevation: 0,
+                                backgroundColor: Colors.white,
+                                label: e,
+                                showCheckmark: false, //不用打勾标记
+                                selected: homeCtrl.chipIndex.value == index,
+                                onSelected: (bool selected) {
+                                  homeCtrl.chipIndex.value = selected
+                                      ? index
+                                      : 0;
+                                },
+                              );
+                            }),
+                          )
+                          .toList(),
+                    ),
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      //primary被废弃
+                      backgroundColor: blue,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      minimumSize: const Size(150, 40),
+                      foregroundColor: Colors.white,//修改按钮文本颜色
+                    ),
+                    onPressed: () {
+                      if (homeCtrl.formKey.currentState!.validate()) {
+                        int icon =
+                            icons[homeCtrl.chipIndex.value].icon!.codePoint;
+                        String color = icons[homeCtrl.chipIndex.value].color!
+                            .toHex();
+                        var task = Task(
+                          title: homeCtrl.editCtrl.text,
+                          icon: icon,
+                          color: color,
+                        );
+                        Get.back();
+                        homeCtrl.addTask(task)
+                            ? EasyLoading.showSuccess('Create success')
+                            : EasyLoading.showError('Duplicated Task');
+                      }
+                    },
+                    child: const Text('Confirm'),
+                  ),
+                ],
               ),
             ),
           );
+          homeCtrl.editCtrl.clear();
+          homeCtrl.changeChipIndex(0);
         },
         child: DottedBorder(
           color: Colors.grey[400]!,
