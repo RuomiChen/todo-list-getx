@@ -11,7 +11,6 @@ This project helps you learn how to build a complete Flutter application from sc
 - 📌 Add, update, delete tasks
 - ✅ Mark tasks as completed
 - 🕒 Persistent storage (local saving)
-- 🌓 Light / Dark mode support
 - 📱 Responsive UI (Mobile-first)
 
 ---
