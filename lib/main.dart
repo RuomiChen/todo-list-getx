@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/app/data/services/storage/services.dart';
+import 'package:flutter_application_1/app/modules/home/binding.dart';
 import 'package:flutter_application_1/app/modules/home/view.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 void main() async{
@@ -15,9 +17,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const GetMaterialApp(
+    return  GetMaterialApp(
       title: 'Todo List using GetX',
-      home:  HomePage(),
+      debugShowCheckedModeBanner: false,
+      home:  const HomePage(),
+      initialBinding: HomeBinding(),
+      builder: EasyLoading.init(),
     );
   }
 }
