@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/app/data/models/task.dart';
 import 'package:flutter_application_1/app/data/services/storage/repository.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 
 class HomeController extends GetxController {
   TaskRepository taskRepository;
@@ -11,6 +12,7 @@ class HomeController extends GetxController {
   final chipIndex = 0.obs;
   final deleting = false.obs;
   final tasks = <Task>[].obs;
+  final task = Rx<Task?>(null);
   @override
   void onInit() {
     super.onInit();
@@ -29,6 +31,10 @@ class HomeController extends GetxController {
   void changeDeleting(bool value) {
     deleting.value = value;
   } 
+
+  void changeTask(Task? select) {
+    task.value = select;
+  }
 
   bool addTask(Task task) {
     if (tasks.contains(task)) {
