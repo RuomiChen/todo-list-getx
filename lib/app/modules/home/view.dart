@@ -4,6 +4,7 @@ import 'package:flutter_application_1/app/core/values/colors.dart';
 import 'package:flutter_application_1/app/data/models/task.dart';
 import 'package:flutter_application_1/app/modules/home/controller.dart';
 import 'package:flutter_application_1/app/modules/home/widgets/add_card.dart';
+import 'package:flutter_application_1/app/modules/home/widgets/add_dialog.dart';
 import 'package:flutter_application_1/app/modules/home/widgets/task_card.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
@@ -60,7 +61,9 @@ class HomePage extends GetView<HomeController> {
             () => FloatingActionButton(
               foregroundColor: Colors.white,
               backgroundColor: controller.deleting.value ? Colors.red : blue,
-              onPressed: () {},
+              onPressed: () =>{
+                Get.to(AddDialog(),transition: Transition.downToUp)
+                },
               child: Icon(controller.deleting.value ? Icons.delete : Icons.add),
             ),
           );
