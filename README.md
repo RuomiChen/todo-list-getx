@@ -25,12 +25,15 @@ This project helps you learn how to build a complete Flutter application from sc
 ---
 
 ## 📦 Packages Used
-
-| Package | Description |
-|--------|-------------|
-| [`get`](https://pub.dev/packages/get) | State management, routing, dependency injection |
-| [`flutter_slidable`](https://pub.dev/packages/flutter_slidable) | Slideable task tiles |
-| [`get_storage`](https://pub.dev/packages/get_storage) | Lightweight persistent storage |
+| Package                                                                       | Version  | Description                                                            |
+| ----------------------------------------------------------------------------- | -------- | ---------------------------------------------------------------------- |
+| [`get`](https://pub.dev/packages/get)                                         | ^4.5.1   | Simplified state management, routing, and dependency injection         |
+| [`get_storage`](https://pub.dev/packages/get_storage)                         | ^2.0.3   | Lightweight local key-value storage, works well with GetX              |
+| [`equatable`](https://pub.dev/packages/equatable)                             | ^2.0.3   | Simplifies value equality for Dart objects, great for comparing models |
+| [`flutter_easyloading`](https://pub.dev/packages/flutter_easyloading)         | ^3.0.3   | Clean and lightweight loading HUD (toast, loading spinner, etc.)       |
+| [`dotted_border`](https://pub.dev/packages/dotted_border)                     | ^2.0.0+2 | Add customizable dotted or dashed borders around widgets               |
+| [`step_progress_indicator`](https://pub.dev/packages/step_progress_indicator) | ^1.0.1   | Create beautiful step-based progress indicators                        |
+| [`cupertino_icons`](https://pub.dev/packages/cupertino_icons)                 | ^1.0.2   | iOS-style icons for use in Cupertino widgets                           |
 
 ---
 
