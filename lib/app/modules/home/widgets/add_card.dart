@@ -90,8 +90,10 @@ class AddCard extends StatelessWidget {
                       if (homeCtrl.formKey.currentState!.validate()) {
                         int icon =
                             icons[homeCtrl.chipIndex.value].icon!.codePoint;
-                        String color = icons[homeCtrl.chipIndex.value].color!
-                            .toHex();
+                        String color = icons[homeCtrl.chipIndex.value].color!.toHex();
+                            //打印color
+                            
+                        print('Selected color: $color');
                         var task = Task(
                           title: homeCtrl.editCtrl.text,
                           icon: icon,
