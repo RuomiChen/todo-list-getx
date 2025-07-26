@@ -29,12 +29,16 @@ class HomeController extends GetxController {
   void changeDeleting(bool value) {
     deleting.value = value;
   } 
-  
+
   bool addTask(Task task) {
     if (tasks.contains(task)) {
       return false; // Task already exists
     }
     tasks.add(task);
     return true; // Task added successfully
+  }
+
+  void deleteTask(Task task) {
+    tasks.remove(task);
   }
 }
