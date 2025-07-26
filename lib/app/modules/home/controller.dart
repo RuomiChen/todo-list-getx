@@ -25,12 +25,14 @@ class HomeController extends GetxController {
     editCtrl.dispose();
     super.onClose();
   }
+
   void changeChipIndex(int index) {
     chipIndex.value = index;
   }
+
   void changeDeleting(bool value) {
     deleting.value = value;
-  } 
+  }
 
   void changeTask(Task? select) {
     task.value = select;
@@ -46,5 +48,18 @@ class HomeController extends GetxController {
 
   void deleteTask(Task task) {
     tasks.remove(task);
+  }
+
+  updateTask(Task task, String title) {
+    var todos = task.todos ?? [];
+    if (containeTodo(todos, title)) {
+      return false;
+    }
+    var todo =  {'title':title, 'done': false};
+    todos.add(todo);
+  }
+
+  bool containeTodo(List todos, String title) {
+    return todos.any((todo) => todo.title == title);
   }
 }

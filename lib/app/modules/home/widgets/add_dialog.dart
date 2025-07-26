@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/app/core/utils/extensions.dart';
 import 'package:flutter_application_1/app/modules/home/controller.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 
@@ -33,7 +34,29 @@ class AddDialog extends StatelessWidget {
                     // 点击时无水波纹
                     overlayColor: WidgetStateProperty.all(Colors.transparent),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    if (homeCtrl.formKey.currentState!.validate()) {
+                      if (homeCtrl.task.value == null) {
+                        EasyLoading.showError('Please select task type');
+                      } else {
+                        var success = homeCtrl.updateTask(
+                          homeCtrl.task.value!,
+                          homeCtrl.editCtrl.text,
+                        );
+                        if (success) {
+                          EasyLoading.showSuccess('Task item add success');
+                          Get.back();
+                          homeCtrl.changeTask(null);
+                        } else {
+                          EasyLoading.showError('Todo item already exist');
+                        }
+                        homeCtrl.editCtrl.clear();
+                      }
+                      Get.back();
+                      homeCtrl.editCtrl.clear();
+                      homeCtrl.changeTask(null);
+                    }
+                  },
                   child: Text('Done', style: TextStyle(fontSize: 14.0.sp)),
                 ),
               ],
