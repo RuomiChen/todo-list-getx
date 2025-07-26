@@ -33,6 +33,7 @@ class HomePage extends GetView<HomeController> {
                 children: [
                   ...controller.tasks.map(
                     (element) => LongPressDraggable(
+                      data: element,
                       onDragStarted: () => controller.changeDeleting(true),
                       onDraggableCanceled: (_, __) =>
                           controller.changeDeleting(false),
@@ -53,6 +54,7 @@ class HomePage extends GetView<HomeController> {
       ),
       floatingActionButton: Obx(
         () => FloatingActionButton(
+        
           foregroundColor: Colors.white,
           backgroundColor: controller.deleting.value
               ? Colors.red
