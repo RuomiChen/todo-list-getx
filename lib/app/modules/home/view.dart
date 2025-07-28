@@ -61,18 +61,21 @@ class HomePage extends GetView<HomeController> {
             () => FloatingActionButton(
               foregroundColor: Colors.white,
               backgroundColor: controller.deleting.value ? Colors.red : blue,
-              onPressed: () =>{
-                Get.to(AddDialog(),transition: Transition.downToUp)
-                },
+              onPressed: () => {
+                if (controller.tasks.isNotEmpty)
+                  {Get.to(AddDialog(), transition: Transition.downToUp)}
+                else
+                  {EasyLoading.showError('Please create your task type')},
+              },
               child: Icon(controller.deleting.value ? Icons.delete : Icons.add),
             ),
           );
         },
         //onAccept已经被废弃了
-        onAcceptWithDetails: ( details ){
+        onAcceptWithDetails: (details) {
           controller.deleteTask(details.data as Task);
           EasyLoading.showSuccess('Delete Success');
-        }
+        },
       ),
     );
   }
