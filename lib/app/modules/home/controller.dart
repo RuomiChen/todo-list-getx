@@ -55,8 +55,13 @@ class HomeController extends GetxController {
     if (containeTodo(todos, title)) {
       return false;
     }
-    var todo =  {'title':title, 'done': false};
+    var todo = {'title': title, 'done': false};
     todos.add(todo);
+    var newTask = task.copyWith(todos: todos);
+    int oldIndex = tasks.indexOf(task);
+    tasks[oldIndex] = newTask;
+    tasks.refresh();
+    return true;
   }
 
   bool containeTodo(List todos, String title) {
