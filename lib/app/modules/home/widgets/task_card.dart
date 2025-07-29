@@ -18,7 +18,10 @@ class TaskCard extends StatelessWidget {
     final color = HexColor.fromHex(task.color);
     final squareWidth = Get.width - 12.0.wp;
     return GestureDetector(
-      onTap: () => Get.to(()=> DetailPage()),
+      onTap: () {
+        homeCtrl.changeTask(task);
+        Get.to(()=> DetailPage());
+        },
       child: Container(
         width: squareWidth / 2,
         height: squareWidth / 2,
