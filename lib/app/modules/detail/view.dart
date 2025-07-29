@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/app/core/utils/extensions.dart';
 import 'package:flutter_application_1/app/modules/home/controller.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
@@ -74,12 +75,46 @@ class DetailPage extends StatelessWidget {
                         end: Alignment.bottomRight,
                         colors: [color.withOpacity(0.5), color],
                       ),
+                      unselectedGradientColor: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [Colors.grey[300]!, Colors.grey[300]!],
+                      ),
                     ),
                   ),
                 ],
               ),
             );
           }),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 2.0.wp, horizontal: 5.0.wp),
+            child: TextFormField(
+              controller: homeCtrl.editCtrl,
+              autofocus: true,
+              decoration: InputDecoration(
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey[400]!),
+                ),
+                prefix: Icon(
+                  Icons.check_box_outline_blank,
+                  color: Colors.grey[400],
+                ),
+                suffix: IconButton(
+                  onPressed: () {
+                    if (homeCtrl.formKey.currentState!.validate()) {
+                      var success = homeCtrl.addTodo();
+                      if(success){
+                        EasyLoading.showSuccess('Todo item add success');
+                      }else{
+                        EasyLoading.showError('Todo item already exist');
+                      }
+                    }
+                  },
+                  icon: const Icon(Icons.done),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
