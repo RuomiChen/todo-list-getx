@@ -103,9 +103,9 @@ class DetailPage extends StatelessWidget {
                   onPressed: () {
                     if (homeCtrl.formKey.currentState!.validate()) {
                       var success = homeCtrl.addTodo();
-                      if(success){
+                      if (success) {
                         EasyLoading.showSuccess('Todo item add success');
-                      }else{
+                      } else {
                         EasyLoading.showError('Todo item already exist');
                       }
                     }
