@@ -1,8 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/app/data/models/task.dart';
 import 'package:flutter_application_1/app/data/services/storage/repository.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 
 class HomeController extends GetxController {
   TaskRepository taskRepository;
@@ -83,5 +83,22 @@ class HomeController extends GetxController {
 
   bool containeTodo(List todos, String title) {
     return todos.any((todo) => todo.title == title);
+  }
+
+  bool addTodo(String title) {
+    var todo = {'title': title, 'done': false};
+    if (doingTodos.any(
+      (element) => mapEquals<String, dynamic>(todo, element),
+    )) {
+      return false;
+    }
+    var doneTodo = {'title': title, 'done': true};
+    if (doneTodos.any(
+      (element) => mapEquals<String, dynamic>(doneTodo, element),
+    )) {
+      return false;
+    }
+    doingTodos.add(todo);
+    return true;
   }
 }
