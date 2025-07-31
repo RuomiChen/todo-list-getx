@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/app/core/utils/extensions.dart';
 import 'package:flutter_application_1/app/data/models/task.dart';
 import 'package:flutter_application_1/app/modules/detail/view.dart';
@@ -20,9 +19,9 @@ class TaskCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         homeCtrl.changeTask(task);
-        homeCtrl.changeTodos(task.todos??[]);
-        Get.to(()=> DetailPage());
-        },
+        homeCtrl.changeTodos(task.todos ?? []);
+        Get.to(() => DetailPage());
+      },
       child: Container(
         width: squareWidth / 2,
         height: squareWidth / 2,
@@ -41,8 +40,8 @@ class TaskCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             StepProgressIndicator(
-              totalSteps: 100,
-              currentStep: 80,
+              totalSteps: homeCtrl.isTodoEmpty(task) ? 1 : task.todos!.length,
+              currentStep: homeCtrl.isTodoEmpty(task)?0:homeCtrl.getDoneTodo(task),
               size: 5,
               padding: 0,
               selectedGradientColor: LinearGradient(
@@ -64,7 +63,7 @@ class TaskCard extends StatelessWidget {
               ),
             ),
             Padding(
-              padding:  EdgeInsets.all(6.0.wp),
+              padding: EdgeInsets.all(6.0.wp),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

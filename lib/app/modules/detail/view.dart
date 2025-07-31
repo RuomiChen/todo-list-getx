@@ -104,7 +104,7 @@ class DetailPage extends StatelessWidget {
                 autofocus: true,
                 decoration: InputDecoration(
                   focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey[400]!),
+                    borderSide: BorderSide(color: Colors.grey),
                   ),
                   prefixIcon: Icon(
                     Icons.check_box_outline_blank,
