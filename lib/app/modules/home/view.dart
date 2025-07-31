@@ -6,6 +6,7 @@ import 'package:flutter_application_1/app/modules/home/controller.dart';
 import 'package:flutter_application_1/app/modules/home/widgets/add_card.dart';
 import 'package:flutter_application_1/app/modules/home/widgets/add_dialog.dart';
 import 'package:flutter_application_1/app/modules/home/widgets/task_card.dart';
+import 'package:flutter_application_1/app/modules/report/view.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 
@@ -15,43 +16,52 @@ class HomePage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: ListView(
+      body: Obx(
+        () => IndexedStack(
+          index: controller.tabIndex.value,
           children: [
-            Padding(
-              padding: EdgeInsets.all(4.0.wp),
-              child: Text(
-                'My List',
-                style: TextStyle(
-                  fontSize: 24.0.sp,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            Obx(
-              () => GridView.count(
-                crossAxisCount: 2,
-                shrinkWrap: true,
-                physics: const ClampingScrollPhysics(),
+            SafeArea(
+              child: ListView(
                 children: [
-                  ...controller.tasks.map(
-                    (element) => LongPressDraggable(
-                      data: element,
-                      onDragStarted: () => controller.changeDeleting(true),
-                      onDraggableCanceled: (_, __) =>
-                          controller.changeDeleting(false),
-                      onDragEnd: (_) => controller.changeDeleting(false),
-                      feedback: Opacity(
-                        opacity: 0.8,
-                        child: TaskCard(task: element),
+                  Padding(
+                    padding: EdgeInsets.all(4.0.wp),
+                    child: Text(
+                      'My List',
+                      style: TextStyle(
+                        fontSize: 24.0.sp,
+                        fontWeight: FontWeight.bold,
                       ),
-                      child: TaskCard(task: element),
                     ),
                   ),
-                  AddCard(),
+                  Obx(
+                    () => GridView.count(
+                      crossAxisCount: 2,
+                      shrinkWrap: true,
+                      physics: const ClampingScrollPhysics(),
+                      children: [
+                        ...controller.tasks.map(
+                          (element) => LongPressDraggable(
+                            data: element,
+                            onDragStarted: () =>
+                                controller.changeDeleting(true),
+                            onDraggableCanceled: (_, __) =>
+                                controller.changeDeleting(false),
+                            onDragEnd: (_) => controller.changeDeleting(false),
+                            feedback: Opacity(
+                              opacity: 0.8,
+                              child: TaskCard(task: element),
+                            ),
+                            child: TaskCard(task: element),
+                          ),
+                        ),
+                        AddCard(),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
+          ReportPage()
           ],
         ),
       ),
