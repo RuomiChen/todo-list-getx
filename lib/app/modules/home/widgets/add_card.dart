@@ -1,6 +1,5 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/app/core/utils/extensions.dart';
 import 'package:flutter_application_1/app/core/values/colors.dart';
 import 'package:flutter_application_1/app/data/models/task.dart';
@@ -8,7 +7,6 @@ import 'package:flutter_application_1/app/modules/home/controller.dart';
 import 'package:flutter_application_1/app/widgets/icons.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class AddCard extends StatelessWidget {
   final homeCtrl = Get.find<HomeController>();
@@ -54,11 +52,13 @@ class AddCard extends StatelessWidget {
                     padding: EdgeInsets.symmetric(vertical: 5.0.wp),
                     child: Wrap(
                       spacing: 2.0.wp,
+                      runSpacing: 2.0.wp,
                       children: icons
                           .map(
                             (e) => Obx(() {
                               final index = icons.indexOf(e);
                               return ChoiceChip(
+                                side: BorderSide.none,
                                 selectedColor: Colors.grey[200],
                                 pressElevation: 0,
                                 backgroundColor: Colors.white,
