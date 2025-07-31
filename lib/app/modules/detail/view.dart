@@ -44,6 +44,7 @@ class DetailPage extends StatelessWidget {
                     IconData(task.icon, fontFamily: 'MaterialIcons'),
                     color: color,
                   ),
+                  SizedBox(width: 3.0.wp,),
                   Text(
                     task.title,
                     style: TextStyle(
@@ -105,11 +106,11 @@ class DetailPage extends StatelessWidget {
                   focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey[400]!),
                   ),
-                  prefix: Icon(
+                  prefixIcon: Icon(
                     Icons.check_box_outline_blank,
-                    color: Colors.grey[400],
+                    color: Colors.grey[400]!,
                   ),
-                  suffix: IconButton(
+                  suffixIcon: IconButton(
                     onPressed: () {
                       if (homeCtrl.formKey.currentState!.validate()) {
                         var success = homeCtrl.addTodo(homeCtrl.editCtrl.text);

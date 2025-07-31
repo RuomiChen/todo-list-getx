@@ -27,33 +27,44 @@ class DoneList extends StatelessWidget {
                   ),
                 ),
                 ...homeCtrl.doneTodos.map(
-                  (element) => Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: 3.0.wp,
-                      horizontal: 9.0.wp,
+                  (element) => Dismissible(
+                    key: ObjectKey(element),
+                    direction: DismissDirection.endToStart,
+                    onDismissed: (_) =>
+                        homeCtrl.deleteDoneTodo(element),
+                    background: Container(
+                      color: Colors.red.withOpacity(0.8),
+                      alignment: Alignment.centerRight,
+                      child: const Icon(Icons.delete, color: Colors.white),
                     ),
-                    child: Row(
-                      children: [
-                        Row(
-                          children: [
-                            const SizedBox(
-                              width: 20,
-                              height: 20,
-                              child: Icon(Icons.done, color: blue),
-                            ),
-                          ],
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 4.0.wp),
-                          child: Text(
-                            element['title'],
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              decoration: TextDecoration.lineThrough,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: 3.0.wp,
+                        horizontal: 9.0.wp,
+                      ),
+                      child: Row(
+                        children: [
+                          Row(
+                            children: [
+                              const SizedBox(
+                                width: 20,
+                                height: 20,
+                                child: Icon(Icons.done, color: blue),
+                              ),
+                            ],
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 4.0.wp),
+                            child: Text(
+                              element['title'],
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                decoration: TextDecoration.lineThrough,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
