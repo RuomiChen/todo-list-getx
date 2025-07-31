@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/app/core/utils/extensions.dart';
 import 'package:flutter_application_1/app/modules/detail/widgets/doing_list.dart';
+import 'package:flutter_application_1/app/modules/detail/widgets/done_list.dart';
 import 'package:flutter_application_1/app/modules/home/controller.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
@@ -56,7 +57,7 @@ class DetailPage extends StatelessWidget {
             Obx(() {
               var totalTodos =
                   homeCtrl.doingTodos.length + homeCtrl.doneTodos.length;
-        
+
               return Padding(
                 padding: EdgeInsets.only(
                   left: 16.0.wp,
@@ -93,7 +94,10 @@ class DetailPage extends StatelessWidget {
               );
             }),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 2.0.wp, horizontal: 5.0.wp),
+              padding: EdgeInsets.symmetric(
+                vertical: 2.0.wp,
+                horizontal: 5.0.wp,
+              ),
               child: TextFormField(
                 controller: homeCtrl.editCtrl,
                 autofocus: true,
@@ -121,7 +125,8 @@ class DetailPage extends StatelessWidget {
                 ),
               ),
             ),
-            DoingList()
+            DoingList(),
+            DoneList(),
           ],
         ),
       ),
