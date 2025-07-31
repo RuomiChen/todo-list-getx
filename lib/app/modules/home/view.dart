@@ -77,6 +77,20 @@ class HomePage extends GetView<HomeController> {
           EasyLoading.showSuccess('Delete Success');
         },
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(label: 'Home', icon: const Icon(Icons.apps)),
+          BottomNavigationBarItem(
+            label: 'Report',
+            icon: const Icon(Icons.data_usage),
+          ),
+        ],
+        onTap: (int index) => {controller.changeTabIndex(index)},
+        currentIndex: controller.tabIndex.value,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+      ),
     );
   }
 }
