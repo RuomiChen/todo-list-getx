@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/app/core/utils/extensions.dart';
 import 'package:flutter_application_1/app/modules/home/controller.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class ReportPage extends StatelessWidget {
   final homeCtrl = Get.find<HomeController>();
@@ -29,6 +30,20 @@ class ReportPage extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 4.0.wp),
+                child: Text(
+                  DateFormat.yMMMMd().format(DateTime.now()),
+                  style: TextStyle(fontSize: 14.0.sp, color: Colors.grey),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: 3.0.wp,
+                  horizontal: 4.0.wp,
+                ),
+                child: const Divider(thickness: 2),
               ),
             ],
           );
