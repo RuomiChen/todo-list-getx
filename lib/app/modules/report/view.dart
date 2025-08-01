@@ -45,10 +45,55 @@ class ReportPage extends StatelessWidget {
                 ),
                 child: const Divider(thickness: 2),
               ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: 3.0.wp,
+                  horizontal: 5.0.wp,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _buildStatus(Colors.green, liveTasks, 'Live Tasks'),
+                    _buildStatus(Colors.orange, completedTasks, 'Completed'),
+                    _buildStatus(Colors.blue, createdTasks, 'Created'),
+                  ],
+                ),
+              ),
             ],
           );
         }),
       ),
+    );
+  }
+
+  Row _buildStatus(Color color, int number, String text) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          height: 3.0.wp,
+          width: 3.0.wp,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(width: 0.5.wp, color: color),
+          ),
+        ),
+        SizedBox(width: 3.0.wp),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              '$number',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0.sp),
+            ),
+            SizedBox(height: 2.0.wp),
+            Text(
+              text,
+              style: TextStyle(fontSize: 12.0.sp, color: Colors.grey),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
