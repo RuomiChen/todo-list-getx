@@ -61,6 +61,7 @@ class ReportPage extends StatelessWidget {
                   ],
                 ),
               ),
+              SizedBox(height: 8.0.wp),
               UnconstrainedBox(
                 child: SizedBox(
                   width: 70.0.wp,
